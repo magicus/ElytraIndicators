@@ -54,19 +54,23 @@ public class ElytraIndicatorsRenderer extends DrawableHelper {
         int backgroundX = middleX + xOffset;
         int backgroundY = scaledHeight - 16 - 3;
 
-        drawGauge(bufferBuilder, 0xFF0000, -12, backgroundX, backgroundY);
-        drawGauge(bufferBuilder, 0xFFAA00, -9, backgroundX, backgroundY);
-        drawGauge(bufferBuilder, 0xDDFF00, -6, backgroundX, backgroundY);
-        drawGauge(bufferBuilder, 0x00FF00, -3, backgroundX, backgroundY);
-        drawGauge(bufferBuilder, 0xFFFFFF, 0, backgroundX, backgroundY);
+        drawGauge(bufferBuilder, 0, 0xFF0000, 0, backgroundX, backgroundY);
+        drawGauge(bufferBuilder, 3, 0xFFAA00, 1, backgroundX, backgroundY);
+        drawGauge(bufferBuilder, 6, 0xDDFF00, 2, backgroundX, backgroundY);
+        drawGauge(bufferBuilder, 9, 0x00FF00, 3, backgroundX, backgroundY);
+        drawGauge(bufferBuilder, 12, 0xFFFFFF, 4, backgroundX, backgroundY);
 
         RenderSystem.enableTexture();
         RenderSystem.enableDepthTest();
     }
 
-    private void drawGauge(BufferBuilder bufferBuilder, int color, int xOffset, int backgroundX, int backgroundY) {
+    private void drawGauge(BufferBuilder bufferBuilder, int value, int color, int slot, int backgroundX, int backgroundY) {
+        int xOffset = -12 + slot*3;
+        // Draw background color for gauge
         drawQuad(bufferBuilder, backgroundX + 13 + xOffset, backgroundY + 1, 2, 15, 0, 0, 0, 255);
         drawQuad(bufferBuilder, backgroundX + 13 + xOffset, backgroundY + 1, 1, 14, color >> 16 & 0xFF, color >> 8 & 0xFF, color & 0xFF, 255);
+        // Draw marker
+        drawQuad(bufferBuilder, backgroundX + 13 + xOffset, backgroundY + 1 + value, 1, 2, 0x40, 0x40, 0x40, 255);
     }
 
     private static void drawQuad(BufferBuilder buffer, int x, int y, int width, int height, int red, int green, int blue, int alpha) {
