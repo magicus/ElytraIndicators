@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "se.icus.mag.elytraindicators",
+  "compatibilityLevel": "JAVA_8",
+  "client": [
+    "mixin.ElytraIndicatorsMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

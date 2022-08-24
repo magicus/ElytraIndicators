@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "elytraindicators",
+  "version": "${version}",
+
+  "name": "Elytra Indicators",
+  "description": "Provides a Vanilla-style \"fly by instrument\" to elytra flight",
+  "authors": [
+    "magicus"
+  ],
+  "contact": {
+    "homepage": "https://github.com/magicus/elytraindicators",
+    "issues": "https://github.com/magicus/elytraindicators/issues",
+    "sources": "https://github.com/magicus/elytraindicators"
+  },
+
+  "license": "LGPLv3",
+  "icon": "assets/elytraindicators/icon.png",
+
+  "environment": "client",
+
+  "mixins": [
+    "elytraindicators.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.7.4",
+    "minecraft": "~1.19"
+  }
+}
