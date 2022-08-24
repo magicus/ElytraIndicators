@@ -28,7 +28,7 @@ public class ElytraIndicatorsRenderer extends DrawableHelper {
         setZOffset(-90);
 
         renderBackground(matrices, scaledWidth, scaledHeight, rightHandSide);
-        renderGauges(scaledWidth, scaledHeight, rightHandSide);
+        renderGauges(mc, scaledWidth, scaledHeight, rightHandSide);
 
         setZOffset(oldZOffset);
         matrices.pop();
@@ -44,7 +44,7 @@ public class ElytraIndicatorsRenderer extends DrawableHelper {
         this.drawTexture(matrices, middleX + xOffset, scaledHeight - 23, 24, 22, 29, 24);
     }
 
-    private void renderGauges(int scaledWidth, int scaledHeight, boolean rightHandSide) {
+    private void renderGauges(MinecraftClient mc, int scaledWidth, int scaledHeight, boolean rightHandSide) {
         RenderSystem.disableDepthTest();
         RenderSystem.disableTexture();
         Tessellator tessellator = Tessellator.getInstance();
@@ -55,11 +55,11 @@ public class ElytraIndicatorsRenderer extends DrawableHelper {
         int backgroundX = middleX + xOffset;
         int backgroundY = scaledHeight - 16 - 3;
 
-        drawGauge(bufferBuilder, values.getPitch(), 0xFF0000, 0, backgroundX, backgroundY);
-        drawGauge(bufferBuilder, values.getSpeed(), 0xFFAA00, 1, backgroundX, backgroundY);
-        drawGauge(bufferBuilder, values.getDescent(), 0xDDFF00, 2, backgroundX, backgroundY);
-        drawGauge(bufferBuilder, values.getHeight(), 0x00FF00, 3, backgroundX, backgroundY);
-        drawGauge(bufferBuilder, values.getDurability(), 0xFFFFFF, 4, backgroundX, backgroundY);
+        drawGauge(bufferBuilder, values.getPitch(mc), 0xFF0000, 0, backgroundX, backgroundY);
+        drawGauge(bufferBuilder, values.getSpeed(mc), 0xFFAA00, 1, backgroundX, backgroundY);
+        drawGauge(bufferBuilder, values.getClimb(mc), 0xDDFF00, 2, backgroundX, backgroundY);
+        drawGauge(bufferBuilder, values.getHeight(mc), 0x00FF00, 3, backgroundX, backgroundY);
+        drawGauge(bufferBuilder, values.getDurability(mc), 0xFFFFFF, 4, backgroundX, backgroundY);
 
         RenderSystem.enableTexture();
         RenderSystem.enableDepthTest();
