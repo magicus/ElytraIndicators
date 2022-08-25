@@ -47,6 +47,8 @@ public class ElytraIndicatorsRenderer extends DrawableHelper {
     private void renderGauges(MinecraftClient mc, int scaledWidth, int scaledHeight, boolean rightHandSide) {
         RenderSystem.disableDepthTest();
         RenderSystem.disableTexture();
+        RenderSystem.enableBlend();
+
         Tessellator tessellator = Tessellator.getInstance();
         BufferBuilder bufferBuilder = tessellator.getBuffer();
 
@@ -59,6 +61,7 @@ public class ElytraIndicatorsRenderer extends DrawableHelper {
             drawGauge(mc, bufferBuilder, slot, backgroundX, backgroundY);
         }
 
+        RenderSystem.disableBlend();
         RenderSystem.enableTexture();
         RenderSystem.enableDepthTest();
     }
@@ -75,7 +78,7 @@ public class ElytraIndicatorsRenderer extends DrawableHelper {
         drawQuad(bufferBuilder, x, y, 2, 15, 0, 255);
         drawQuad(bufferBuilder, x, y, 1, 14, color, 255);
         // Draw the marker
-        drawQuad(bufferBuilder, x, y + (12 - value), 1, 2, 0x404040, 255);
+        drawQuad(bufferBuilder, x, y + (12 - value), 1, 2, 0, 138);
     }
 
     private static void drawQuad(BufferBuilder buffer, int x, int y, int width, int height, int color, int alpha) {
