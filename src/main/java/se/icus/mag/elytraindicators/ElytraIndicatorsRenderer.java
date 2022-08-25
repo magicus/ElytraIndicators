@@ -55,24 +55,34 @@ public class ElytraIndicatorsRenderer extends DrawableHelper {
         int backgroundX = middleX + xOffset;
         int backgroundY = scaledHeight - 16 - 3;
 
-        for (int slot = 0; slot < Gauge.GAUGES.length; slot++) {
-            drawGauge(bufferBuilder, Gauge.GAUGES[slot].getValue(mc), Gauge.GAUGES[slot].getFaceColor(), slot, backgroundX, backgroundY);
+        for (int slot = 0; slot < Gauge.getGaugeCount(); slot++) {
+            drawGauge(mc, bufferBuilder, slot, backgroundX, backgroundY);
         }
 
         RenderSystem.enableTexture();
         RenderSystem.enableDepthTest();
     }
 
-    private void drawGauge(BufferBuilder bufferBuilder, int value, int color, int slot, int backgroundX, int backgroundY) {
-        int xOffset = -12 + slot * 3;
-        // Draw background color for gauge
-        drawQuad(bufferBuilder, backgroundX + 13 + xOffset, backgroundY + 1, 2, 15, 0, 0, 0, 255);
-        drawQuad(bufferBuilder, backgroundX + 13 + xOffset, backgroundY + 1, 1, 14, color >> 16 & 0xFF, color >> 8 & 0xFF, color & 0xFF, 255);
-        // Draw marker
-        drawQuad(bufferBuilder, backgroundX + 13 + xOffset, backgroundY + 1 + (12 - value), 1, 2, 0x40, 0x40, 0x40, 255);
+    private void drawGauge(MinecraftClient mc, BufferBuilder bufferBuilder, int slot, int backgroundX, int backgroundY) {
+        Gauge gauge = Gauge.getGauge(slot);
+        int value = gauge.getValue(mc);
+        int color = gauge.getFaceColor();
+
+        // Draw the face (background) of the gauge
+        int x = backgroundX + 1 + slot * 3;
+        int y = backgroundY + 1;
+
+        drawQuad(bufferBuilder, x, y, 2, 15, 0, 255);
+        drawQuad(bufferBuilder, x, y, 1, 14, color, 255);
+        // Draw the marker
+        drawQuad(bufferBuilder, x, y + (12 - value), 1, 2, 0x404040, 255);
     }
 
-    private static void drawQuad(BufferBuilder buffer, int x, int y, int width, int height, int red, int green, int blue, int alpha) {
+    private static void drawQuad(BufferBuilder buffer, int x, int y, int width, int height, int color, int alpha) {
+        int red = color >> 16 & 0xFF;
+        int green = color >> 8 & 0xFF;
+        int blue = color & 0xFF;
+
         RenderSystem.setShader(GameRenderer::getPositionColorShader);
         buffer.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_COLOR);
         buffer.vertex(x + 0, y + 0, 0.0).color(red, green, blue, alpha).next();

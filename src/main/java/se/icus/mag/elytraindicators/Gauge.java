@@ -8,13 +8,21 @@ import se.icus.mag.elytraindicators.gauges.PitchGauge;
 import se.icus.mag.elytraindicators.gauges.SpeedGauge;
 
 public abstract class Gauge {
-    public static final Gauge[] GAUGES = {
+    private final static Gauge[] GAUGES = {
             new PitchGauge(),
             new SpeedGauge(),
             new ClimbGauge(),
             new HeightGauge(),
             new DurabilityGauge()
     };
+
+    public static int getGaugeCount() {
+        return GAUGES.length;
+    }
+
+    public static Gauge getGauge(int slot) {
+        return GAUGES[slot];
+    }
 
     public int getValue(MinecraftClient mc) {
         double realValue = getRealValue(mc);
@@ -34,5 +42,4 @@ public abstract class Gauge {
         if (value > 12) return 12;
         return value;
     }
-
 }
