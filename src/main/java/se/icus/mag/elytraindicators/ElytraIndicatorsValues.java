@@ -2,6 +2,8 @@ package se.icus.mag.elytraindicators;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.Entity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 
 /**
  * Return values between 0 and 12, inclusive
@@ -48,8 +50,13 @@ public class ElytraIndicatorsValues {
     }
 
     int getDurability(MinecraftClient mc) {
-        // FIXME: Not done yet
-        return 11;
+        ItemStack item = mc.player.getInventory().getArmorStack(2);
+        if (!item.isOf(Items.ELYTRA)) return 0;
+        double realDurability = ((double) item.getDamage() / item.getMaxDamage());
+
+        // Rescale it to 0-12
+        int durability = (int) Math.floor(12.3 - realDurability * 12);
+        return limit(durability);
     }
 
     private static int limit(int value) {
