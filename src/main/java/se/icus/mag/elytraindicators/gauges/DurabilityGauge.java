@@ -18,4 +18,9 @@ public class DurabilityGauge extends Gauge {
     public double rescale(double realValue) {
         return Math.floor(12.3 - realValue * 12);
     }
+
+    @Override
+    public int getFaceColor() {
+        return 0xFFFFFF;
+    }
 }

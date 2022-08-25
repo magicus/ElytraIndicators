@@ -16,4 +16,9 @@ public class ClimbGauge extends Gauge {
         double sqrtValue = Math.signum(realValue) * Math.sqrt(Math.abs(realValue));
         return Math.round(6.0 -  sqrtValue/ 5.5 * 6);
     }
+
+    @Override
+    public int getFaceColor() {
+        return 0xDDFF00;
+    }
 }

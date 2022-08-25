@@ -14,4 +14,9 @@ public class PitchGauge extends Gauge {
         double sqrtValue = Math.signum(realValue) * Math.sqrt(Math.abs(realValue));
         return Math.round(6.5 -  sqrtValue/ 7.0 * 6);
     }
+
+    @Override
+    public int getFaceColor() {
+        return 0xFF0000;
+    }
 }

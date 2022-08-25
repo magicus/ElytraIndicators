@@ -24,6 +24,8 @@ public abstract class Gauge {
         return limit(value);
     }
 
+    public abstract int getFaceColor();
+
     protected abstract double getRealValue(MinecraftClient mc);
     protected abstract double rescale(double realValue);
 

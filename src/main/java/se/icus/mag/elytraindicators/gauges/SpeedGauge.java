@@ -18,4 +18,9 @@ public class SpeedGauge extends Gauge {
     public double rescale(double realValue) {
         return Math.round(realValue / 65.0 * 12);
     }
+
+    @Override
+    public int getFaceColor() {
+        return 0xFFAA00;
+    }
 }

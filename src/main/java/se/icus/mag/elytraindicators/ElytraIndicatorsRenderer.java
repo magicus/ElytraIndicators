@@ -55,11 +55,9 @@ public class ElytraIndicatorsRenderer extends DrawableHelper {
         int backgroundX = middleX + xOffset;
         int backgroundY = scaledHeight - 16 - 3;
 
-        drawGauge(bufferBuilder, Gauge.GAUGES[0].getValue(mc), 0xFF0000, 0, backgroundX, backgroundY);
-        drawGauge(bufferBuilder, Gauge.GAUGES[1].getValue(mc), 0xFFAA00, 1, backgroundX, backgroundY);
-        drawGauge(bufferBuilder, Gauge.GAUGES[2].getValue(mc), 0xDDFF00, 2, backgroundX, backgroundY);
-        drawGauge(bufferBuilder, Gauge.GAUGES[3].getValue(mc), 0x00FF00, 3, backgroundX, backgroundY);
-        drawGauge(bufferBuilder, Gauge.GAUGES[4].getValue(mc), 0xFFFFFF, 4, backgroundX, backgroundY);
+        for (int slot = 0; slot < Gauge.GAUGES.length; slot++) {
+            drawGauge(bufferBuilder, Gauge.GAUGES[slot].getValue(mc), Gauge.GAUGES[slot].getFaceColor(), slot, backgroundX, backgroundY);
+        }
 
         RenderSystem.enableTexture();
         RenderSystem.enableDepthTest();
