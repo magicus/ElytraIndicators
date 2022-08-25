@@ -71,12 +71,20 @@ public class ElytraIndicatorsRenderer extends DrawableHelper {
         int value = gauge.getValue(mc);
         int color = gauge.getFaceColor();
 
-        // Draw the face (background) of the gauge
         int x = backgroundX + 1 + slot * 3;
         int y = backgroundY + 1;
 
+        // Draw the face (background) of the gauge
         drawQuad(bufferBuilder, x, y, 2, 15, 0, 255);
-        drawQuad(bufferBuilder, x, y, 1, 14, color, 255);
+
+        int highLimit = gauge.getHighLimit();
+        int highHeight = 12-highLimit;
+        int lowLimit = gauge.getLowLimit();
+        int middleHeight = highLimit - lowLimit;
+        drawQuad(bufferBuilder, x, y, 1, highHeight, 0xFF0000, 255);
+        drawQuad(bufferBuilder, x, y+highHeight, 1, middleHeight, color, 255);
+        drawQuad(bufferBuilder, x, y+highHeight+middleHeight, 1, lowLimit+1, 0xFF0000, 255);
+
         // Draw the marker
         drawQuad(bufferBuilder, x, y + (12 - value), 1, 2, 0, 138);
     }

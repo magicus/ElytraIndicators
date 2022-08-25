@@ -33,6 +33,8 @@ public abstract class Gauge {
     }
 
     public abstract int getFaceColor();
+    public abstract int getHighLimit();
+    public abstract int getLowLimit();
 
     protected abstract double getRealValue(MinecraftClient mc);
     protected abstract double rescale(double realValue);

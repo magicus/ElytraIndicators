@@ -21,6 +21,16 @@ public class SpeedGauge extends Gauge {
 
     @Override
     public int getFaceColor() {
-        return 0xFFAA00;
+        return 0x00FF00;
+    }
+
+    public int getHighLimit() {
+        // ~ 30 m/s
+        return 6;
+    }
+
+    public int getLowLimit() {
+        // ~ 9 m/s
+        return 2;
     }
 }

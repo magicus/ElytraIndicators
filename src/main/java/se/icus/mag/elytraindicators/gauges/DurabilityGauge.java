@@ -21,6 +21,16 @@ public class DurabilityGauge extends Gauge {
 
     @Override
     public int getFaceColor() {
-        return 0xFFFFFF;
+        return 0x00FF00;
+    }
+
+    public int getHighLimit() {
+        // ~ 0% damage
+        return 12;
+    }
+
+    public int getLowLimit() {
+        // ~ 80% damage
+        return 2;
     }
 }

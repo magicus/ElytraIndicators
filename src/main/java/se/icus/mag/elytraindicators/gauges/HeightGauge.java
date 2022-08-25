@@ -19,4 +19,14 @@ public class HeightGauge extends Gauge {
     public int getFaceColor() {
         return 0x00FF00;
     }
+
+    public int getHighLimit() {
+        // ~ 320 m
+        return 12;
+    }
+
+    public int getLowLimit() {
+        // ~ 100 m
+        return 2;
+    }
 }

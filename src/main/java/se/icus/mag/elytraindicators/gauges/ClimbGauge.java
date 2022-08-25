@@ -19,6 +19,16 @@ public class ClimbGauge extends Gauge {
 
     @Override
     public int getFaceColor() {
-        return 0xDDFF00;
+        return 0x00FF00;
+    }
+
+    public int getHighLimit() {
+        // ~ -5 m/s
+        return 8;
+    }
+
+    public int getLowLimit() {
+        // ~ 5 m/s
+        return 4;
     }
 }

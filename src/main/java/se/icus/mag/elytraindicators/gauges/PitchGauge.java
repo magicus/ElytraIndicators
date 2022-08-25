@@ -17,6 +17,16 @@ public class PitchGauge extends Gauge {
 
     @Override
     public int getFaceColor() {
-        return 0xFF0000;
+        return 0x00FF00;
+    }
+
+    public int getHighLimit() {
+        // ~ -13°
+        return 10;
+    }
+
+    public int getLowLimit() {
+        // ~ 13°
+        return 3;
     }
 }
