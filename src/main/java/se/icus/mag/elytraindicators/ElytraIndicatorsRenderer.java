@@ -16,7 +16,6 @@ import net.minecraft.util.Identifier;
 
 public class ElytraIndicatorsRenderer extends DrawableHelper {
     private static final Identifier WIDGETS_TEXTURE = new Identifier("textures/gui/widgets.png");
-    private final ElytraIndicatorsValues values = new ElytraIndicatorsValues();
 
     public void render(MatrixStack matrices, MinecraftClient mc, int scaledWidth, int scaledHeight) {
         if (!(mc.cameraEntity instanceof PlayerEntity playerEntity)) return;
@@ -56,18 +55,18 @@ public class ElytraIndicatorsRenderer extends DrawableHelper {
         int backgroundX = middleX + xOffset;
         int backgroundY = scaledHeight - 16 - 3;
 
-        drawGauge(bufferBuilder, values.getPitch(mc), 0xFF0000, 0, backgroundX, backgroundY);
-        drawGauge(bufferBuilder, values.getSpeed(mc), 0xFFAA00, 1, backgroundX, backgroundY);
-        drawGauge(bufferBuilder, values.getClimb(mc), 0xDDFF00, 2, backgroundX, backgroundY);
-        drawGauge(bufferBuilder, values.getHeight(mc), 0x00FF00, 3, backgroundX, backgroundY);
-        drawGauge(bufferBuilder, values.getDurability(mc), 0xFFFFFF, 4, backgroundX, backgroundY);
+        drawGauge(bufferBuilder, Gauge.GAUGES[0].getValue(mc), 0xFF0000, 0, backgroundX, backgroundY);
+        drawGauge(bufferBuilder, Gauge.GAUGES[1].getValue(mc), 0xFFAA00, 1, backgroundX, backgroundY);
+        drawGauge(bufferBuilder, Gauge.GAUGES[2].getValue(mc), 0xDDFF00, 2, backgroundX, backgroundY);
+        drawGauge(bufferBuilder, Gauge.GAUGES[3].getValue(mc), 0x00FF00, 3, backgroundX, backgroundY);
+        drawGauge(bufferBuilder, Gauge.GAUGES[4].getValue(mc), 0xFFFFFF, 4, backgroundX, backgroundY);
 
         RenderSystem.enableTexture();
         RenderSystem.enableDepthTest();
     }
 
     private void drawGauge(BufferBuilder bufferBuilder, int value, int color, int slot, int backgroundX, int backgroundY) {
-        int xOffset = -12 + slot*3;
+        int xOffset = -12 + slot * 3;
         // Draw background color for gauge
         drawQuad(bufferBuilder, backgroundX + 13 + xOffset, backgroundY + 1, 2, 15, 0, 0, 0, 255);
         drawQuad(bufferBuilder, backgroundX + 13 + xOffset, backgroundY + 1, 1, 14, color >> 16 & 0xFF, color >> 8 & 0xFF, color & 0xFF, 255);
