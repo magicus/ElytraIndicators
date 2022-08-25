@@ -20,6 +20,7 @@ public class ElytraIndicatorsRenderer extends DrawableHelper {
 
     public void render(MatrixStack matrices, MinecraftClient mc, int scaledWidth, int scaledHeight) {
         if (!(mc.cameraEntity instanceof PlayerEntity playerEntity)) return;
+        if (!mc.player.isFallFlying()) return;
 
         boolean rightHandSide = playerEntity.getMainArm().getOpposite() == Arm.LEFT;
 
