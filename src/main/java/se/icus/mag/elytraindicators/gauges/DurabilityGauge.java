@@ -6,31 +6,27 @@ import net.minecraft.item.Items;
 import se.icus.mag.elytraindicators.Gauge;
 
 public class DurabilityGauge extends Gauge {
+    private static final GaugeFacePart[] GAUGE_FACE_PARTS = {
+            new GaugeFacePart(7, OK),
+            new GaugeFacePart(3, CAUTION),
+            new GaugeFacePart(4, ALERT)
+    };
+
     @Override
     public double getRealValue(MinecraftClient mc) {
         ItemStack item = mc.player.getInventory().getArmorStack(2);
         if (!item.isOf(Items.ELYTRA)) return 0;
 
-        return ((double) item.getDamage() / item.getMaxDamage());
+        return ((double) (item.getMaxDamage() - item.getDamage()) / item.getMaxDamage());
     }
 
     @Override
     public double rescale(double realValue) {
-        return Math.floor(12.3 - realValue * 12);
+        return Math.round((-19 * realValue * realValue + 36 * realValue - 0.4) / 17.0 * 12);
     }
 
     @Override
-    public int getFaceColor() {
-        return 0x00FF00;
-    }
-
-    public int getHighLimit() {
-        // ~ 0% damage
-        return 12;
-    }
-
-    public int getLowLimit() {
-        // ~ 80% damage
-        return 2;
+    public GaugeFacePart[] getFaceParts() {
+        return GAUGE_FACE_PARTS;
     }
 }

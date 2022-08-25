@@ -5,6 +5,14 @@ import net.minecraft.entity.Entity;
 import se.icus.mag.elytraindicators.Gauge;
 
 public class SpeedGauge extends Gauge {
+    private static final GaugeFacePart[] GAUGE_FACE_PARTS = {
+            new GaugeFacePart(2, ALERT),
+            new GaugeFacePart(3, CAUTION),
+            new GaugeFacePart(7, OK),
+            new GaugeFacePart(1, CAUTION),
+            new GaugeFacePart(1, ALERT)
+    };
+
     @Override
     public double getRealValue(MinecraftClient mc) {
         Entity player = mc.player;
@@ -16,21 +24,11 @@ public class SpeedGauge extends Gauge {
 
     @Override
     public double rescale(double realValue) {
-        return Math.round(realValue / 65.0 * 12);
+        return Math.round(realValue / 48.0 * 12);
     }
 
     @Override
-    public int getFaceColor() {
-        return 0x00FF00;
-    }
-
-    public int getHighLimit() {
-        // ~ 30 m/s
-        return 6;
-    }
-
-    public int getLowLimit() {
-        // ~ 9 m/s
-        return 2;
+    public GaugeFacePart[] getFaceParts() {
+        return GAUGE_FACE_PARTS;
     }
 }

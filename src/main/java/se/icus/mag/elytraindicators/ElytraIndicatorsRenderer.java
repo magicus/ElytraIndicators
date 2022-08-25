@@ -69,7 +69,6 @@ public class ElytraIndicatorsRenderer extends DrawableHelper {
     private void drawGauge(MinecraftClient mc, BufferBuilder bufferBuilder, int slot, int backgroundX, int backgroundY) {
         Gauge gauge = Gauge.getGauge(slot);
         int value = gauge.getValue(mc);
-        int color = gauge.getFaceColor();
 
         int x = backgroundX + 1 + slot * 3;
         int y = backgroundY + 1;
@@ -77,13 +76,12 @@ public class ElytraIndicatorsRenderer extends DrawableHelper {
         // Draw the face (background) of the gauge
         drawQuad(bufferBuilder, x, y, 2, 15, 0, 255);
 
-        int highLimit = gauge.getHighLimit();
-        int highHeight = 12-highLimit;
-        int lowLimit = gauge.getLowLimit();
-        int middleHeight = highLimit - lowLimit;
-        drawQuad(bufferBuilder, x, y, 1, highHeight, 0xFF0000, 255);
-        drawQuad(bufferBuilder, x, y+highHeight, 1, middleHeight, color, 255);
-        drawQuad(bufferBuilder, x, y+highHeight+middleHeight, 1, lowLimit+1, 0xFF0000, 255);
+        int partStart = 0;
+        Gauge.GaugeFacePart[] faceParts = gauge.getFaceParts();
+        for (var facePart : faceParts) {
+            drawQuad(bufferBuilder, x, y+partStart, 1, facePart.steps(), facePart.color(), 255);
+            partStart += facePart.steps();
+        }
 
         // Draw the marker
         drawQuad(bufferBuilder, x, y + (12 - value), 1, 2, 0, 138);

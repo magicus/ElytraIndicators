@@ -5,6 +5,14 @@ import net.minecraft.entity.Entity;
 import se.icus.mag.elytraindicators.Gauge;
 
 public class ClimbGauge extends Gauge {
+    private static final GaugeFacePart[] GAUGE_FACE_PARTS = {
+            new GaugeFacePart(1, ALERT),
+            new GaugeFacePart(3, CAUTION),
+            new GaugeFacePart(5, OK),
+            new GaugeFacePart(2, CAUTION),
+            new GaugeFacePart(3, ALERT)
+    };
+
     @Override
     public double getRealValue(MinecraftClient mc) {
         Entity player = mc.player;
@@ -13,22 +21,17 @@ public class ClimbGauge extends Gauge {
 
     @Override
     public double rescale(double realValue) {
-        double sqrtValue = Math.signum(realValue) * Math.sqrt(Math.abs(realValue));
-        return Math.round(6.0 -  sqrtValue/ 5.5 * 6);
+        double offsettedValue = realValue - 1.5;
+        double sqrtValue = Math.signum(offsettedValue) * Math.sqrt(Math.abs(offsettedValue));
+        if (offsettedValue <= 0) {
+            return Math.floor(9.0 - sqrtValue / 5.55 * 3);
+        } else {
+            return Math.floor(9.0 - offsettedValue * 1.6);
+        }
     }
 
     @Override
-    public int getFaceColor() {
-        return 0x00FF00;
-    }
-
-    public int getHighLimit() {
-        // ~ -5 m/s
-        return 8;
-    }
-
-    public int getLowLimit() {
-        // ~ 5 m/s
-        return 4;
+    public GaugeFacePart[] getFaceParts() {
+        return GAUGE_FACE_PARTS;
     }
 }
