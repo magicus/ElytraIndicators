@@ -16,12 +16,21 @@ public abstract class Gauge {
             new DurabilityGauge()
     };
 
-    public abstract int getValue(MinecraftClient mc);
+    public int getValue(MinecraftClient mc) {
+        double realValue = getRealValue(mc);
 
-    protected int limit(int value) {
+        // Rescale it to 0-12
+        int value = (int) rescale(realValue);
+        return limit(value);
+    }
+
+    protected abstract double getRealValue(MinecraftClient mc);
+    protected abstract double rescale(double realValue);
+
+    private int limit(int value) {
         if (value < 0) return 0;
         if (value > 12) return 12;
-        return (int) value;
+        return value;
     }
 
 }

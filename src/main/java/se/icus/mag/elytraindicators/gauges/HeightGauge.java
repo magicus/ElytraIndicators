@@ -6,12 +6,12 @@ import se.icus.mag.elytraindicators.Gauge;
 
 public class HeightGauge extends Gauge {
     @Override
-    public int getValue(MinecraftClient mc) {
-        Entity entity = mc.player;
-        double realHeight = entity.getY();
+    public double getRealValue(MinecraftClient mc) {
+        return mc.player.getY();
+    }
 
-        // Rescale it to 0-12
-        int height = (int) Math.round((realHeight - 64.0) / 256.0 * 12);
-        return limit(height);
+    @Override
+    public double rescale(double realValue) {
+        return Math.round((realValue - 64.0) / 256.0 * 12);
     }
 }

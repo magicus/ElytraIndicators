@@ -7,13 +7,15 @@ import se.icus.mag.elytraindicators.Gauge;
 
 public class DurabilityGauge extends Gauge {
     @Override
-    public int getValue(MinecraftClient mc) {
+    public double getRealValue(MinecraftClient mc) {
         ItemStack item = mc.player.getInventory().getArmorStack(2);
         if (!item.isOf(Items.ELYTRA)) return 0;
-        double realDurability = ((double) item.getDamage() / item.getMaxDamage());
 
-        // Rescale it to 0-12
-        int durability = (int) Math.floor(12.3 - realDurability * 12);
-        return limit(durability);
+        return ((double) item.getDamage() / item.getMaxDamage());
+    }
+
+    @Override
+    public double rescale(double realValue) {
+        return Math.floor(12.3 - realValue * 12);
     }
 }

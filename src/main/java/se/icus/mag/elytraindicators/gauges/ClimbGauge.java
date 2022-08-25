@@ -6,13 +6,14 @@ import se.icus.mag.elytraindicators.Gauge;
 
 public class ClimbGauge extends Gauge {
     @Override
-    public int getValue(MinecraftClient mc) {
-        Entity entity = mc.player;
-        double realClimb = (entity.lastRenderY - entity.getY()) * 20.0;
-        double sqrtClimb = Math.signum(realClimb) * Math.sqrt(Math.abs(realClimb));
+    public double getRealValue(MinecraftClient mc) {
+        Entity player = mc.player;
+        return (player.lastRenderY - player.getY()) * 20.0;
+    }
 
-        // Rescale it to 0-12
-        int climb = (int) Math.round(6.0 -  sqrtClimb/ 5.5 * 6);
-        return limit(climb);
+    @Override
+    public double rescale(double realValue) {
+        double sqrtValue = Math.signum(realValue) * Math.sqrt(Math.abs(realValue));
+        return Math.round(6.0 -  sqrtValue/ 5.5 * 6);
     }
 }
