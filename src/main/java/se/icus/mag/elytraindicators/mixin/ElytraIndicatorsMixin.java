@@ -3,9 +3,9 @@ package se.icus.mag.elytraindicators.mixin;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.DrawableHelper;
+import net.minecraft.client.gui.DrawContext;
+import net.minecraft.client.gui.LayeredDrawer;
 import net.minecraft.client.gui.hud.InGameHud;
-import net.minecraft.client.util.math.MatrixStack;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -17,20 +17,25 @@ import se.icus.mag.elytraindicators.ElytraIndicatorsRenderer;
 
 @Environment(EnvType.CLIENT)
 @Mixin(InGameHud.class)
-public abstract class ElytraIndicatorsMixin extends DrawableHelper {
+public abstract class ElytraIndicatorsMixin {
     @Shadow
     @Final
     private MinecraftClient client;
+
     @Shadow
-    private int scaledWidth;
-    @Shadow
-    private int scaledHeight;
+    @Final
+    private LayeredDrawer layeredDrawer;
 
     @Unique
     private final ElytraIndicatorsRenderer renderer = new ElytraIndicatorsRenderer();
 
-    @Inject(method = "render", at = @At("RETURN"))
-    private void render(MatrixStack matrices, float tickDelta, CallbackInfo ci) {
-        renderer.render(matrices, client, scaledWidth, scaledHeight);
+    @Inject(method = "Lnet/minecraft/client/gui/hud/InGameHud;<init>(Lnet/minecraft/client/MinecraftClient;)V", at = @At("RETURN"))
+    private void constructor(MinecraftClient client, CallbackInfo ci) {
+        layeredDrawer.addLayer(this::renderElytraIndicators);
+    }
+
+    @Unique
+    private void renderElytraIndicators(DrawContext context, float tickDelta) {
+        renderer.render(context, client);
     }
 }
