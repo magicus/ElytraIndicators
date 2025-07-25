@@ -4,8 +4,8 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.gui.LayeredDrawer;
 import net.minecraft.client.gui.hud.InGameHud;
+import net.minecraft.client.render.RenderTickCounter;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -22,20 +22,11 @@ public abstract class ElytraIndicatorsMixin {
     @Final
     private MinecraftClient client;
 
-    @Shadow
-    @Final
-    private LayeredDrawer layeredDrawer;
-
     @Unique
     private final ElytraIndicatorsRenderer renderer = new ElytraIndicatorsRenderer();
 
-    @Inject(method = "Lnet/minecraft/client/gui/hud/InGameHud;<init>(Lnet/minecraft/client/MinecraftClient;)V", at = @At("RETURN"))
-    private void constructor(MinecraftClient client, CallbackInfo ci) {
-        layeredDrawer.addLayer(this::renderElytraIndicators);
-    }
-
-    @Unique
-    private void renderElytraIndicators(DrawContext context, float tickDelta) {
+    @Inject(method = "renderHotbar(Lnet/minecraft/client/gui/DrawContext;Lnet/minecraft/client/render/RenderTickCounter;)V", at = @At("RETURN"))
+    private void constructor(DrawContext context, RenderTickCounter tickCounter, CallbackInfo ci) {
         renderer.render(context, client);
     }
 }

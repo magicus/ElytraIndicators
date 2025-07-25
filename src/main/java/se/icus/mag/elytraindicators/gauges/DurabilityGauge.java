@@ -1,6 +1,7 @@
 package se.icus.mag.elytraindicators.gauges;
 
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import se.icus.mag.elytraindicators.Gauge;
@@ -14,7 +15,7 @@ public class DurabilityGauge extends Gauge {
 
     @Override
     public double getRealValue(MinecraftClient mc) {
-        ItemStack item = mc.player.getInventory().getArmorStack(2);
+        ItemStack item = mc.player.getEquippedStack(EquipmentSlot.CHEST);
         if (!item.isOf(Items.ELYTRA)) return 0;
 
         return ((double) (item.getMaxDamage() - item.getDamage()) / item.getMaxDamage());
