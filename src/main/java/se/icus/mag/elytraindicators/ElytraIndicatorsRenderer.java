@@ -10,8 +10,6 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.ColorHelper;
 
 public class ElytraIndicatorsRenderer {
-    private IndicatorSize indicatorSize = IndicatorSize.COMPACT;
-
     public void render(DrawContext context, MinecraftClient mc) {
         if (!(mc.cameraEntity instanceof PlayerEntity playerEntity)) return;
         if (!mc.player.isGliding()) return;
@@ -26,8 +24,8 @@ public class ElytraIndicatorsRenderer {
         int middleX = context.getScaledWindowWidth() / 2;
         int xOffset = rightHandSide ? (91 + 7) : (-91 - 7 - 102);
 
-        Identifier texture = indicatorSize.getIdentifier();
-        int width = indicatorSize.getWidth();
+        Identifier texture = getIndicatorSize().getIdentifier();
+        int width = getIndicatorSize().getWidth();
         context.drawTexture(RenderPipelines.GUI_TEXTURED, texture, middleX + xOffset, context.getScaledWindowHeight() - 23 + 1, 0, 0, width, 22, width, 22);
     }
 
@@ -46,10 +44,10 @@ public class ElytraIndicatorsRenderer {
         Gauge gauge = Gauge.getGauge(slot);
         int value = gauge.getValue(mc);
 
-        int x = backgroundX + 1 + slot * indicatorSize.getGaugeOffset();
+        int x = backgroundX + 1 + slot * getIndicatorSize().getGaugeOffset();
         int y = backgroundY + 1;
 
-        int gaugeWidth = indicatorSize.getGaugeWidth();
+        int gaugeWidth = getIndicatorSize().getGaugeWidth();
 
         // Draw the face (background) of the gauge
         drawQuad(context, x, y, gaugeWidth+1, 15, Colors.BLACK, 0xFF);
@@ -64,6 +62,10 @@ public class ElytraIndicatorsRenderer {
         // Draw the marker frame and actual marker
         drawQuad(context, x - 1, y + (12 - value) - 1, gaugeWidth + 2, 4, Colors.WHITE, 0xFF);
         drawQuad(context, x, y + (12 - value), gaugeWidth, 2, Colors.BLACK, 0xB0);
+    }
+
+    private IndicatorSize getIndicatorSize() {
+        return ElytraIndicatorsMod.getConfig().getIndicatorSize();
     }
 
     private static void drawQuad(DrawContext context, int x, int y, int width, int height, int color, int alpha) {

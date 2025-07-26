@@ -19,13 +19,19 @@
 
   "environment": "client",
 
-  "mixins": [
-    "elytraindicators.mixins.json"
-  ],
+  "entrypoints": {
+    "client": [
+      "se.icus.mag.elytraindicators.ElytraIndicatorsMod"
+    ],
+    "modmenu": [
+      "se.icus.mag.elytraindicators.config.ElytraIndicatorsModMenuIntegration"
+    ]
+  },
 
   "depends": {
     "fabricloader": ">=0.16.4",
     "minecraft": "~1.21.8",
-    "fabric-api": ">=0.129.0"
+    "fabric-api": ">=0.129.0",
+    "cloth-config":">=19.0.147"
   }
 }
