@@ -10,7 +10,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.ColorHelper;
 
 public class ElytraIndicatorsRenderer {
-    private IndicatorSize indicatorSize = IndicatorSize.WIDE;
+    private IndicatorSize indicatorSize = IndicatorSize.COMPACT;
 
     public void render(DrawContext context, MinecraftClient mc) {
         if (!(mc.cameraEntity instanceof PlayerEntity playerEntity)) return;
@@ -61,14 +61,8 @@ public class ElytraIndicatorsRenderer {
             partStart += facePart.steps();
         }
 
-        // Draw the marker frame
-        if (this.indicatorSize == IndicatorSize.COMPACT) {
-            drawQuad(context, x + 1, y + (12 - value), 1, 2, Colors.WHITE, 0xA0);
-        } else {
-            drawQuad(context, x - 1, y + (12 - value) - 1, gaugeWidth + 2, 4, Colors.WHITE, 0xFF);
-        }
-
-        // Draw the actual marker
+        // Draw the marker frame and actual marker
+        drawQuad(context, x - 1, y + (12 - value) - 1, gaugeWidth + 2, 4, Colors.WHITE, 0xFF);
         drawQuad(context, x, y + (12 - value), gaugeWidth, 2, Colors.BLACK, 0xB0);
     }
 

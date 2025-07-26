@@ -3,8 +3,8 @@ package se.icus.mag.elytraindicators;
 import net.minecraft.util.Identifier;
 
 public enum IndicatorSize {
-    COMPACT("compact-indicator-frame", 22, 3, 1),
-    MEDIUM("semi-wide-indicator-frame", 62, 10, 2),
+    COMPACT("compact-indicator-frame", 29, 5, 1),
+    MEDIUM("medium-indicator-frame", 71, 13, 2),
     WIDE("wide-indicator-frame", 102, 20, 3);
 
     private final Identifier identifier;
