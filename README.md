@@ -54,15 +54,23 @@ The green bar shows that the elytra still has a fairly safe amount of durability
 
 ## Configuration
 
-There is a single option to configure the mod: the width of the indicator panel. This can be set to WIDE (the default), MEDIUM, or COMPACT. The COMPACT setting does not include icons for the gauges, so it’s only useful if you’ve learned how to read the gauges and want to save screen space.
+There is a single option to configure the mod: the width of the indicator panel. This can be set to **wide** (the default), **medium**, or **compact**. The **compact** setting does not include icons for the gauges, so it’s only useful if you’ve learned how to read the gauges and want to save screen space.
 
-The configuration screen can be accessed using Mod Menu or Mod Settings. You can also directly edit the configuration file elytraindicators.json in the config folder of your Minecraft instance.
+The configuration screen can be accessed using Mod Menu or Mod Settings. You can also directly edit the configuration file `elytraindicators.json` in the `config` folder of your Minecraft instance.
 
 ## Screenshot
 
-This is what it looks like when you're using the mod:
+This is what it looks like when you're using the mod using the default width setting:
 
-![Screenshot](screenshot.png?raw=true)
+![Screenshot](docs/screenshot.png)
+
+This is how it looks like with medium width:
+
+![Screenshot, medium width](docs/screenshot-medium.png)
+
+And this is how it looks like in compact mode:
+
+![Screenshot, compact width](docs/screenshot-compact.png)
 
 ## Download
 
