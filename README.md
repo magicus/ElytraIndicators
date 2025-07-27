@@ -4,7 +4,7 @@
 
 Elytra Indicators is a Minecraft mod that provides Vanilla-style "fly by instrument" support for elytra flight.
 
-When using an elytra in vanilla Minecraft, it can be difficult to judge how well you are flying. Especially when traveling at high altitudes and speeds and chunk loading struggles to keep up, or when flying over the void in the End, it can be difficult to tell whether you're flying at a safe pitch, let alone an optimal one. You can press F3 and stare at the debug screen, but that’s not very convenient, and the numbers can be hard to interpret. This mod solves that problem by giving you a set of gauges that show how your flight is going. The gauges are designed to fit in with the Vanilla style, and are slightly inspired by those found in real aircraft.
+When using an elytra in Vanilla Minecraft, it can be difficult to judge how well you're flying. Especially when traveling at high altitudes and speeds and chunk loading struggles to keep up, or when flying over the void in the End, it can be hard to tell whether you're flying at a safe pitch — let alone an optimal one. You can press F3 and stare at the debug screen, but that's not very convenient, and the numbers can be hard to interpret. This mod solves that problem by giving you a set of gauges that show how your flight is going. The gauges are designed to fit in with the Vanilla style and are slightly inspired by those found in real aircraft.
 
 ## Gauges
 
