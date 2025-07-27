@@ -1,3 +1,11 @@
+# Elytra Indicators
+
+[![GitHub](https://img.shields.io/github/downloads/magicus/ElytraIndicators/total?logo=github)](https://github.com/magicus/ElytraIndicators/releases)
+
+Elytra Indicators is a Minecraft mod that provides Vanilla-style "fly by instrument" to elytra flight.
+
+When flying with an elytra, especially when travelling high up with high speed, and chunk loading is having a hard time keeping up, or when flying over the void in the End, it can sometimes be hard to tell if you are flying at a safe pitch, let alone if it is an optimal pitch. You can press F3 and stare at the debug screen, but that is not very convenient, and it can be hard to interpret the numbers. This mod solves this problem by giving you a set of gauges, that tells you how you are doing with your elytra flight. The gauges are designed to fit in with the Vanilla HUD, and are slightly inspired by the gauges you would find in a real aircraft.
+
 ## Gauges
 
 The Elytra Indicators mod adds five gauges to the screen when you are flying with an elytra. These gauges are designed to help you keep track of your flight and avoid crashing. They show, in order from left to right, your pitch, speed, climb rate, height, and elytra wear.
@@ -43,3 +51,29 @@ The green bar shows a recommended height to maintain for long flights. Stay at t
 The fifth gauge shows how much durability your elytra has left. This is not a linear scale, so it will stay in the green area for a long time, and only start moving into the yellow and red bars when your elytra is seriously close to breaking. The gauge will move much faster at that point, so stay alert.
 
 The green bar shows that the elytra has a fairly safe amount of durability left.
+
+## Configuration
+
+There is a single option to configure the mod: the width of the indicator panel. This can be set to WIDE (the default), MEDIUM and COMPACT. The COMPACT setting does not have any indication what each gauge means, so it is only useful if you have learned how to read the gauges and want to save space.
+
+The configuration screen can be reached using Mod Menu or Mod Settings. You can also directly edit the configuration file `elytraindicators.json` in the `config` folder of your Minecraft instance.
+
+## Screenshot
+
+This is what it looks like when you are using the mod.
+
+![Screenshot](screenshot.png?raw=true)
+
+## Download
+
+You can download the mod from any of these sites:
+
+* [GitHub releases](https://github.com/magicus/ElytraIndicators/releases)
+
+## Installation
+
+Install this as you would any other Fabric mod. (I recommend using [Prism Launcher](https://prismlauncher.org/) as Minecraft launcher for modded Minecraft.)
+
+## Support
+
+Do you have any problems with the mod? Please open an issue here on Github.
