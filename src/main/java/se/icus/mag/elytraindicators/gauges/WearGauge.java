@@ -24,7 +24,7 @@ public final class WearGauge extends Gauge {
 
     @Override
     public double rescale(double realValue) {
-        return Math.round((-19 * realValue * realValue + 36 * realValue - 0.4) / 17.0 * 12);
+        return Math.round((-19 * realValue * realValue + 36 * realValue - 0.4) / 17.0 * Gauge.MAX_GAUGE_VALUE);
     }
 
     @Override

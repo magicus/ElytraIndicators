@@ -27,7 +27,7 @@ public final class SpeedGauge extends Gauge {
 
     @Override
     public double rescale(double realValue) {
-        return Math.round(realValue / 48.0 * 12);
+        return Math.round(realValue / 48.0 * Gauge.MAX_GAUGE_VALUE);
     }
 
     @Override

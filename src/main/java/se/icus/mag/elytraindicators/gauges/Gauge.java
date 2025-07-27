@@ -13,6 +13,7 @@ public abstract sealed class Gauge permits PitchGauge, SpeedGauge, ClimbGauge, H
     protected static final int ALERT = 0xFF0000;
     protected static final int CAUTION = 0xFFFF00;
     protected static final int OK = 0x00FF00;
+    public static final int MAX_GAUGE_VALUE = 12;
 
     public static int getGaugeCount() {
         return GAUGES.length;
@@ -38,7 +39,7 @@ public abstract sealed class Gauge permits PitchGauge, SpeedGauge, ClimbGauge, H
 
     private int clamp(int value) {
         if (value < 0) return 0;
-        if (value > 12) return 12;
+        if (value > MAX_GAUGE_VALUE) return MAX_GAUGE_VALUE;
         return value;
     }
 

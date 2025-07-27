@@ -64,7 +64,7 @@ public class ElytraIndicatorsRenderer {
         }
 
         // Draw the marker frame and actual marker
-        int markerY = y + 12 - value;
+        int markerY = y + Gauge.MAX_GAUGE_VALUE - value;
         drawQuad(context, x - 1, markerY - 1, width + 2, 4, Colors.WHITE, 0xFF);
         drawQuad(context, x, markerY, width, 2, Colors.BLACK, 0xB0);
     }

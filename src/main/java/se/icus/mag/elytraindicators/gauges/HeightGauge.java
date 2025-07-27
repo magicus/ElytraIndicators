@@ -18,7 +18,7 @@ public final class HeightGauge extends Gauge {
 
     @Override
     public double rescale(double realValue) {
-        return Math.round((realValue - 64.0) / 300.0 * 12);
+        return Math.round((realValue - 64.0) / 300.0 * Gauge.MAX_GAUGE_VALUE);
     }
 
     @Override
