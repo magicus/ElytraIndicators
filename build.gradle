@@ -9,13 +9,6 @@ repositories {
     maven { url "https://maven.terraformersmc.com/releases/" }
 }
 
-sourceCompatibility = JavaVersion.VERSION_21
-targetCompatibility = JavaVersion.VERSION_21
-
-archivesBaseName = project.archives_base_name
-version = project.mod_version
-group = project.maven_group
-
 dependencies {
     // To change the versions see the gradle.properties file
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
@@ -32,20 +25,17 @@ dependencies {
     modApi "com.terraformersmc:modmenu:${project.modmenu_version}"
 }
 
-processResources {
-    inputs.properties([
-            "version": project.version,
-            "cloth_version": project.cloth_version
-    ])
-
-    filesMatching("fabric.mod.json") {
-        expand version: project.version, cloth_version: project.cloth_version
-    }
-}
+archivesBaseName = project.archives_base_name
+version = project.mod_version
+group = project.maven_group
+def fabric_api_version = project.fabric_version.tokenize('+')[0]
 
 tasks.withType(JavaCompile).configureEach {
     it.options.encoding = "UTF-8"
 }
+
+sourceCompatibility = JavaVersion.VERSION_21
+targetCompatibility = JavaVersion.VERSION_21
 
 java {
     toolchain {
@@ -60,6 +50,26 @@ java {
 jar {
     from("LICENSE") {
         rename { "${it}_${project.archivesBaseName}"}
+    }
+}
+
+processResources {
+    inputs.properties([
+        "cloth_version": project.cloth_version,
+        "fabric_api_version": fabric_api_version,
+        "loader_version": project.loader_version,
+        "mod_version": project.mod_version,
+        "supported_minecraft_versions": project.minecraft_version,
+    ])
+
+    filesMatching("fabric.mod.json") {
+        expand([
+            cloth_version: project.cloth_version,
+            fabric_api_version: fabric_api_version,
+            loader_version: project.loader_version,
+            mod_version: project.mod_version,
+            supported_minecraft_versions: project.minecraft_version,
+        ])
     }
 }
 
@@ -94,7 +104,7 @@ spotless {
     json {
         target "**/*.json"
         // schemaVersion must be at the top or else Fabric will complain
-        targetExclude("src/main/resources/fabric.mod.json")
+        targetExclude("src/main/resources/fabric.mod.json", 'run/**')
         gson()
                 .indentWithSpaces(2)
                 .sortByKeys()

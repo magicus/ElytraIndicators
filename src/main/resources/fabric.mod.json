@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "elytraindicators",
-  "version": "${version}",
+  "version": "${mod_version}",
 
   "name": "Elytra Indicators",
   "description": "Provides Vanilla-style \"fly by instrument\" support for elytra flight",
@@ -29,9 +29,9 @@
   },
 
   "depends": {
-    "fabricloader": ">=0.16.4",
-    "minecraft": "~1.21.8",
-    "fabric-api": ">=0.129.0",
+    "fabricloader": ">=${loader_version}",
+    "minecraft": "${supported_minecraft_versions}",
+    "fabric-api": ">=${fabric_api_version}",
     "cloth-config":">=${cloth_version}"
   }
 }
