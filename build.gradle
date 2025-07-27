@@ -1,14 +1,16 @@
 plugins {
-	id 'fabric-loom' version '1.11.4'
+	id 'fabric-loom' version "${loom_version}"
+	id "com.diffplug.spotless" version "${spotless_version}"
 }
 
 repositories {
+	maven { url "https://maven.parchmentmc.org/" }
 	maven { url "https://maven.shedaniel.me/" }
 	maven { url "https://maven.terraformersmc.com/releases/" }
 }
 
-sourceCompatibility = JavaVersion.VERSION_17
-targetCompatibility = JavaVersion.VERSION_17
+sourceCompatibility = JavaVersion.VERSION_21
+targetCompatibility = JavaVersion.VERSION_21
 
 archivesBaseName = project.archives_base_name
 version = project.mod_version
@@ -17,7 +19,10 @@ group = project.maven_group
 dependencies {
 	// To change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
-	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+	mappings loom.layered() {
+		officialMojangMappings()
+		parchment("org.parchmentmc.data:parchment-${parchment_version}@zip")
+	}
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
 	// Fabric API
@@ -35,26 +40,18 @@ processResources {
 
 	filesMatching("fabric.mod.json") {
 		expand "version": project.version
+		expand "cloth_version": project.cloth_version
 	}
 }
 
 tasks.withType(JavaCompile).configureEach {
-	// ensure that the encoding is set to UTF-8, no matter what the system default is
-	// this fixes some edge cases with special characters not displaying correctly
-	// see http://yodaconditions.net/blog/fix-for-java-file-encoding-problems-with-gradle.html
-	// If Javadoc is generated, this must be specified in that task too.
 	it.options.encoding = "UTF-8"
-
-	// The Minecraft launcher currently installs Java 8 for users, so your mod probably wants to target Java 8 too
-	// JDK 9 introduced a new way of specifying this that will make sure no newer classes or methods are used.
-	// We'll use that if it's available, but otherwise we'll use the older option.
-	def targetVersion = 17
-	if (JavaVersion.current().isJava9Compatible()) {
-		it.options.release = targetVersion
-	}
 }
 
 java {
+	toolchain {
+		languageVersion.set(JavaLanguageVersion.of(java_version))
+	}
 	// Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
 	// if it is present.
 	// If you remove this line, sources will not be generated.
@@ -64,5 +61,63 @@ java {
 jar {
 	from("LICENSE") {
 		rename { "${it}_${project.archivesBaseName}"}
+	}
+}
+
+spotless {
+	java {
+		// define the steps to apply to Java source code
+		importOrder()
+		removeUnusedImports()
+		palantirJavaFormat(spotless_palantir_version)
+		trimTrailingWhitespace()
+		endWithNewline()
+		// Custom rule from https://github.com/apache/geode
+		custom "Refuse wildcard imports", {
+			if (it =~ /\nimport .*\*;/) {
+				throw new AssertionError("Do not use wildcard imports. 'spotlessApply' cannot resolve this issue.")
+			}
+		}
+		custom "Refuse IntelliJ annotations", {
+			if (it =~ /\nimport org\.jetbrains\.annotations\./) {
+				throw new AssertionError("Do not use IntelliJ annotations. 'spotlessApply' cannot resolve this issue.")
+			}
+		}
+		custom "No empty line after opening curly brace", {
+			it.replaceAll(/\{\n\n/, '{\n')
+		}
+		licenseHeader("/*\n" +
+				" * Copyright © Magnus Ihse Bursie \$YEAR.\n" +
+				" * This file is released under LGPLv3. See LICENSE for full license details.\n" +
+				" */")
+				.updateYearWithLatest(true)
+	}
+	json {
+		target "**/*.json"
+        // schemaVersion must be at the top or else Fabric will complain
+		targetExclude("src/main/resources/fabric.mod.json")
+		gson()
+				.indentWithSpaces(2)
+				.sortByKeys()
+				.version(spotless_gson_version)
+		trimTrailingWhitespace()
+		endWithNewline()
+	}
+	/*
+	groovyGradle {
+		target '** /*.gradle'
+		greclipse("${spotless_greclipse_version}").configFile("${rootDir}/greclipse.properties")
+		trimTrailingWhitespace()
+		endWithNewline()
+	}
+
+	 */
+
+	format "misc", {
+		target "*.md", ".gitignore", "*.properties"
+
+		trimTrailingWhitespace()
+		indentWithSpaces()
+		endWithNewline()
 	}
 }
