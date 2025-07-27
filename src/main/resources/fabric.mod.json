@@ -4,7 +4,7 @@
   "version": "${version}",
 
   "name": "Elytra Indicators",
-  "description": "Provides Vanilla-style \"fly by instrument\" to elytra flight",
+  "description": "Provides Vanilla-style \"fly by instrument\" support for elytra flight",
   "authors": [
     "magicus"
   ],
