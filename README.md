@@ -1,5 +1,6 @@
 # Elytra Indicators
-
+[![Modrinth](https://img.shields.io/modrinth/dt/elytra-indicators?logo=modrinth)](https://modrinth.com/mod/elytra-indicators)
+[![CurseForge](https://cf.way2muchnoise.eu/short_elytra-indicators.svg)](https://www.curseforge.com/minecraft/mc-mods/elytra-indicators)
 [![GitHub](https://img.shields.io/github/downloads/magicus/ElytraIndicators/total?logo=github)](https://github.com/magicus/ElytraIndicators/releases)
 
 ![Logo](docs/logo.png)
@@ -79,6 +80,8 @@ The green bar shows that the elytra still has a fairly safe amount of durability
 You can download the mod from any of these sites:
 
 * [GitHub releases](https://github.com/magicus/ElytraIndicators/releases)
+* [Modrinth versions](https://modrinth.com/mod/elytra-indicators/versions)
+* [CurseForge](https://www.curseforge.com/minecraft/mc-mods/elytra-indicators/files)
 
 ## Installation
 
