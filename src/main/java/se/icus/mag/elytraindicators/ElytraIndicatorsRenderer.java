@@ -22,7 +22,7 @@ public class ElytraIndicatorsRenderer {
 
     private void renderBackground(DrawContext context, boolean rightHandSide) {
         int middleX = context.getScaledWindowWidth() / 2;
-        int xOffset = rightHandSide ? (91 + 7) : (-91 - 7 - 102);
+        int xOffset = rightHandSide ? 98 : (-102 - getIndicatorSize().getWidth());
 
         Identifier texture = getIndicatorSize().getIdentifier();
         int width = getIndicatorSize().getWidth();
@@ -31,7 +31,7 @@ public class ElytraIndicatorsRenderer {
 
     private void renderGauges(DrawContext context, MinecraftClient mc, boolean rightHandSide) {
         int middleX = context.getScaledWindowWidth() / 2;
-        int xOffset = rightHandSide ? (91 + 10) : (-91 - 26);
+        int xOffset = rightHandSide ? 98 + 3 : (-102 - getIndicatorSize().getWidth() + 3);
         int backgroundX = middleX + xOffset;
         int backgroundY = context.getScaledWindowHeight() - 19;
 
