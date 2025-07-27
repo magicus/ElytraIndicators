@@ -1,11 +1,6 @@
-package se.icus.mag.elytraindicators;
+package se.icus.mag.elytraindicators.gauges;
 
 import net.minecraft.client.MinecraftClient;
-import se.icus.mag.elytraindicators.gauges.ClimbGauge;
-import se.icus.mag.elytraindicators.gauges.DurabilityGauge;
-import se.icus.mag.elytraindicators.gauges.HeightGauge;
-import se.icus.mag.elytraindicators.gauges.PitchGauge;
-import se.icus.mag.elytraindicators.gauges.SpeedGauge;
 
 public abstract class Gauge {
     private final static Gauge[] GAUGES = {
@@ -32,7 +27,7 @@ public abstract class Gauge {
 
         // Rescale it to 0-12
         int value = (int) rescale(realValue);
-        return limit(value);
+        return clamp(value);
     }
 
     public abstract GaugeFacePart[] getFaceParts();
@@ -40,7 +35,7 @@ public abstract class Gauge {
     protected abstract double getRealValue(MinecraftClient mc);
     protected abstract double rescale(double realValue);
 
-    private int limit(int value) {
+    private int clamp(int value) {
         if (value < 0) return 0;
         if (value > 12) return 12;
         return value;

@@ -1,4 +1,4 @@
-package se.icus.mag.elytraindicators;
+package se.icus.mag.elytraindicators.render;
 
 import net.minecraft.util.Identifier;
 
@@ -6,6 +6,8 @@ public enum IndicatorSize {
     COMPACT("compact-indicator-frame", 29, 5, 1),
     MEDIUM("medium-indicator-frame", 71, 13, 2),
     WIDE("wide-indicator-frame", 102, 20, 3);
+
+    public static final int TEXTURE_HEIGHT = 22;
 
     private final Identifier identifier;
     private final int width;

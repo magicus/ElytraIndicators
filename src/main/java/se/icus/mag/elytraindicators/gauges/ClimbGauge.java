@@ -2,7 +2,6 @@ package se.icus.mag.elytraindicators.gauges;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.Entity;
-import se.icus.mag.elytraindicators.Gauge;
 
 public class ClimbGauge extends Gauge {
     private static final GaugeFacePart[] GAUGE_FACE_PARTS = {

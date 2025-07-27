@@ -7,6 +7,7 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.MinecraftClient;
 import se.icus.mag.elytraindicators.config.ElytraIndicatorsConfig;
+import se.icus.mag.elytraindicators.render.ElytraIndicatorsRenderer;
 
 public class ElytraIndicatorsMod implements ClientModInitializer {
     private static ElytraIndicatorsConfig config;
@@ -25,5 +26,4 @@ public class ElytraIndicatorsMod implements ClientModInitializer {
     public static ElytraIndicatorsConfig getConfig() {
         return config;
     }
-
 }
