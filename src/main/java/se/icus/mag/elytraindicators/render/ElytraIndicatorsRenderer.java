@@ -1,3 +1,7 @@
+/*
+ * Copyright © Magnus Ihse Bursie 2025.
+ * This file is released under LGPLv3. See LICENSE for full license details.
+ */
 package se.icus.mag.elytraindicators.render;
 
 import net.minecraft.client.MinecraftClient;
@@ -55,7 +59,7 @@ public class ElytraIndicatorsRenderer {
         int partStart = 0;
         Gauge.GaugeFacePart[] faceParts = gauge.getFaceParts();
         for (var facePart : faceParts) {
-            drawQuad(context, x, y +partStart, width, facePart.steps(), facePart.color(), 0xFF);
+            drawQuad(context, x, y + partStart, width, facePart.steps(), facePart.color(), 0xFF);
             partStart += facePart.steps();
         }
 

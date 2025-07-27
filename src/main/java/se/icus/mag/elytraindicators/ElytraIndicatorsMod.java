@@ -1,3 +1,7 @@
+/*
+ * Copyright © Magnus Ihse Bursie 2025.
+ * This file is released under LGPLv3. See LICENSE for full license details.
+ */
 package se.icus.mag.elytraindicators;
 
 import me.shedaniel.autoconfig.AutoConfig;
@@ -15,7 +19,8 @@ public class ElytraIndicatorsMod implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        ConfigHolder<ElytraIndicatorsConfig> configHolder = AutoConfig.register(ElytraIndicatorsConfig.class, GsonConfigSerializer::new);
+        ConfigHolder<ElytraIndicatorsConfig> configHolder =
+                AutoConfig.register(ElytraIndicatorsConfig.class, GsonConfigSerializer::new);
         config = configHolder.getConfig();
 
         HudRenderCallback.EVENT.register((drawContext, tickDelta) -> {

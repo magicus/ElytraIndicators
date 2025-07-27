@@ -1,3 +1,7 @@
+/*
+ * Copyright © Magnus Ihse Bursie 2025.
+ * This file is released under LGPLv3. See LICENSE for full license details.
+ */
 package se.icus.mag.elytraindicators.gauges;
 
 import net.minecraft.client.MinecraftClient;
@@ -5,11 +9,11 @@ import net.minecraft.entity.Entity;
 
 public class SpeedGauge extends Gauge {
     private static final GaugeFacePart[] GAUGE_FACE_PARTS = {
-            new GaugeFacePart(2, ALERT),
-            new GaugeFacePart(3, CAUTION),
-            new GaugeFacePart(7, OK),
-            new GaugeFacePart(1, CAUTION),
-            new GaugeFacePart(1, ALERT)
+        new GaugeFacePart(2, ALERT),
+        new GaugeFacePart(3, CAUTION),
+        new GaugeFacePart(7, OK),
+        new GaugeFacePart(1, CAUTION),
+        new GaugeFacePart(1, ALERT)
     };
 
     @Override

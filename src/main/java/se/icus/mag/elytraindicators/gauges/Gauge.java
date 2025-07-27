@@ -1,18 +1,18 @@
+/*
+ * Copyright © Magnus Ihse Bursie 2025.
+ * This file is released under LGPLv3. See LICENSE for full license details.
+ */
 package se.icus.mag.elytraindicators.gauges;
 
 import net.minecraft.client.MinecraftClient;
 
 public abstract class Gauge {
-    private final static Gauge[] GAUGES = {
-            new PitchGauge(),
-            new SpeedGauge(),
-            new ClimbGauge(),
-            new HeightGauge(),
-            new WearGauge()
+    private static final Gauge[] GAUGES = {
+        new PitchGauge(), new SpeedGauge(), new ClimbGauge(), new HeightGauge(), new WearGauge()
     };
-    protected final static int ALERT = 0xFF0000;
-    protected final static int CAUTION = 0xFFFF00;
-    protected final static int OK = 0x00FF00;
+    protected static final int ALERT = 0xFF0000;
+    protected static final int CAUTION = 0xFFFF00;
+    protected static final int OK = 0x00FF00;
 
     public static int getGaugeCount() {
         return GAUGES.length;
@@ -33,6 +33,7 @@ public abstract class Gauge {
     public abstract GaugeFacePart[] getFaceParts();
 
     protected abstract double getRealValue(MinecraftClient mc);
+
     protected abstract double rescale(double realValue);
 
     private int clamp(int value) {
