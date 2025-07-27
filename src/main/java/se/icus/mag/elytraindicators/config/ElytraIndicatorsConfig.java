@@ -8,7 +8,7 @@ import se.icus.mag.elytraindicators.render.IndicatorSize;
 @Config(name = "elytraindicators")
 public class ElytraIndicatorsConfig implements ConfigData {
 	@ConfigEntry.Gui.EnumHandler(option = ConfigEntry.Gui.EnumHandler.EnumDisplayOption.BUTTON)
-	IndicatorSize indicatorSize = IndicatorSize.MEDIUM;
+	IndicatorSize indicatorSize = IndicatorSize.WIDE;
 
 	public IndicatorSize getIndicatorSize() {
 		return indicatorSize;
