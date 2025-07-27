@@ -9,7 +9,7 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 
-public class WearGauge extends Gauge {
+public final class WearGauge extends Gauge {
     private static final GaugeFacePart[] GAUGE_FACE_PARTS = {
         new GaugeFacePart(7, OK), new GaugeFacePart(3, CAUTION), new GaugeFacePart(4, ALERT)
     };

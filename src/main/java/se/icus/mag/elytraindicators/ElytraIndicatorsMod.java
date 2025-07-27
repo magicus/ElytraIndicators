@@ -8,12 +8,16 @@ import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.ConfigHolder;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
+import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElementRegistry;
+import net.fabricmc.fabric.api.client.rendering.v1.hud.VanillaHudElements;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.util.Identifier;
 import se.icus.mag.elytraindicators.config.ElytraIndicatorsConfig;
 import se.icus.mag.elytraindicators.render.ElytraIndicatorsRenderer;
 
 public class ElytraIndicatorsMod implements ClientModInitializer {
+    public static final String MOD_ID = "elytraindicators";
+
     private static ElytraIndicatorsConfig config;
     private final ElytraIndicatorsRenderer renderer = new ElytraIndicatorsRenderer();
 
@@ -23,9 +27,10 @@ public class ElytraIndicatorsMod implements ClientModInitializer {
                 AutoConfig.register(ElytraIndicatorsConfig.class, GsonConfigSerializer::new);
         config = configHolder.getConfig();
 
-        HudRenderCallback.EVENT.register((drawContext, tickDelta) -> {
-            renderer.render(drawContext, MinecraftClient.getInstance());
-        });
+        HudElementRegistry.attachElementAfter(
+                VanillaHudElements.HOTBAR,
+                Identifier.of(MOD_ID, "elytra_hud"),
+                (drawContext, tickDelta) -> renderer.render(drawContext, MinecraftClient.getInstance()));
     }
 
     public static ElytraIndicatorsConfig getConfig() {

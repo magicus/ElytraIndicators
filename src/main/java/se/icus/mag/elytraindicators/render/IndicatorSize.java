@@ -5,6 +5,7 @@
 package se.icus.mag.elytraindicators.render;
 
 import net.minecraft.util.Identifier;
+import se.icus.mag.elytraindicators.ElytraIndicatorsMod;
 
 public enum IndicatorSize {
     COMPACT("compact-indicator-frame", 29, 5, 1),
@@ -19,7 +20,7 @@ public enum IndicatorSize {
     private final int gaugeWidth;
 
     IndicatorSize(String textureName, int width, int gaugeOffset, int gaugeWidth) {
-        this.identifier = Identifier.of("elytraindicators", "textures/gui/" + textureName + ".png");
+        this.identifier = Identifier.of(ElytraIndicatorsMod.MOD_ID, "textures/gui/" + textureName + ".png");
         this.width = width;
         this.gaugeOffset = gaugeOffset;
         this.gaugeWidth = gaugeWidth;

@@ -6,7 +6,7 @@ package se.icus.mag.elytraindicators.gauges;
 
 import net.minecraft.client.MinecraftClient;
 
-public abstract class Gauge {
+public abstract sealed class Gauge permits PitchGauge, SpeedGauge, ClimbGauge, HeightGauge, WearGauge {
     private static final Gauge[] GAUGES = {
         new PitchGauge(), new SpeedGauge(), new ClimbGauge(), new HeightGauge(), new WearGauge()
     };

@@ -6,7 +6,7 @@ package se.icus.mag.elytraindicators.gauges;
 
 import net.minecraft.client.MinecraftClient;
 
-public class HeightGauge extends Gauge {
+public final class HeightGauge extends Gauge {
     private static final GaugeFacePart[] GAUGE_FACE_PARTS = {
         new GaugeFacePart(9, OK), new GaugeFacePart(2, CAUTION), new GaugeFacePart(3, ALERT)
     };
