@@ -122,7 +122,7 @@ spotless {
         target "*.md", ".gitignore", "*.properties"
 
         trimTrailingWhitespace()
-        indentWithSpaces()
+        leadingTabsToSpaces()
         endWithNewline()
     }
 }
