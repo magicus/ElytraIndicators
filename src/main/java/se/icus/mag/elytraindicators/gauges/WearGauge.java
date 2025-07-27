@@ -5,7 +5,7 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 
-public class DurabilityGauge extends Gauge {
+public class WearGauge extends Gauge {
     private static final GaugeFacePart[] GAUGE_FACE_PARTS = {
             new GaugeFacePart(7, OK),
             new GaugeFacePart(3, CAUTION),

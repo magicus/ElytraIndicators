@@ -8,7 +8,7 @@ public abstract class Gauge {
             new SpeedGauge(),
             new ClimbGauge(),
             new HeightGauge(),
-            new DurabilityGauge()
+            new WearGauge()
     };
     protected final static int ALERT = 0xFF0000;
     protected final static int CAUTION = 0xFFFF00;
