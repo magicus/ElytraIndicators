@@ -140,3 +140,19 @@ Minecraft.)
 ## Support
 
 Do you have any problems with the mod? Please open an issue here on Github.
+
+## Other Mods
+
+Check out my other mods, which also supplies vanilla-style usability enhancements:
+
+### Status Effect Timer
+
+![Logo](https://raw.githubusercontent.com/magicus/statuseffecttimer/master/docs/logo.png)
+
+[Status Effect Timer](https://github.com/magicus/statuseffecttimer) is a Minecraft mod for Fabric that overlays a timer on the Vanilla status effect HUD icons.
+
+### Mod Settings
+
+![Logo](https://raw.githubusercontent.com/magicus/ModSettings/master/docs/logo.png)
+
+[Mod Settings](https://github.com/magicus/ModSettings) is a Minecraft mod for Fabric that provides an easy to access configuration screen for all installed mods.
