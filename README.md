@@ -40,9 +40,10 @@ panel. This can be set to **wide** (the default), **medium**, or **compact**.
 The **compact** setting does not include icons for the gauges, so it’s only
 useful if you’ve learned how to read the gauges and want to save screen space.
 
-The configuration screen can be accessed using Mod Menu or Mod Settings. You
-can also directly edit the configuration file `elytraindicators.json` in the
-`config` folder of your Minecraft instance.
+The configuration screen can be accessed using Mod Menu or [Mod
+Settings](https://github.com/magicus/ModSettings). You can also directly edit
+the configuration file `elytraindicators.json` in the `config` folder of your
+Minecraft instance.
 
 ## Gauges
 
