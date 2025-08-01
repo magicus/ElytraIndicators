@@ -129,7 +129,7 @@ You can download the mod from any of these sites:
 
 * [GitHub releases](https://github.com/magicus/ElytraIndicators/releases)
 * [Modrinth versions](https://modrinth.com/mod/elytra-indicators/versions)
-* [CurseForge](https://www.curseforge.com/minecraft/mc-mods/elytra-indicators/files)
+* [CurseForge files](https://www.curseforge.com/minecraft/mc-mods/elytra-indicators/files)
 
 ## Installation
 
