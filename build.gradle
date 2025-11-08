@@ -59,7 +59,7 @@ processResources {
         "fabric_api_version": fabric_api_version,
         "loader_version": project.loader_version,
         "mod_version": project.mod_version,
-        "supported_minecraft_versions": project.minecraft_version,
+        "supported_minecraft_versions": project.supported_minecraft_versions,
     ])
 
     filesMatching("fabric.mod.json") {
@@ -68,7 +68,7 @@ processResources {
             fabric_api_version: fabric_api_version,
             loader_version: project.loader_version,
             mod_version: project.mod_version,
-            supported_minecraft_versions: project.minecraft_version,
+            supported_minecraft_versions: project.supported_minecraft_versions,
         ])
     }
 }
