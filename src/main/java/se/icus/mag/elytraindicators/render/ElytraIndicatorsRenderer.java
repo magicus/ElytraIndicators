@@ -21,7 +21,7 @@ public class ElytraIndicatorsRenderer {
     }
 
     public void render(DrawContext context, MinecraftClient mc) {
-        if (!(mc.cameraEntity instanceof PlayerEntity playerEntity)) return;
+        if (!(mc.getCameraEntity() instanceof PlayerEntity playerEntity)) return;
         if (mc.options.hudHidden) return;
         if (!mc.player.isGliding()) return;
 
