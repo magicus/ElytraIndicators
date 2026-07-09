@@ -1,13 +1,13 @@
 /*
- * Copyright © Magnus Ihse Bursie 2025.
+ * Copyright © Magnus Ihse Bursie 2025-2026.
  * This file is released under LGPLv3. See LICENSE for full license details.
  */
 package se.icus.mag.elytraindicators.gauges;
 
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
+import net.minecraft.client.Minecraft;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 
 public final class WearGauge extends Gauge {
     private static final GaugeFacePart[] GAUGE_FACE_PARTS = {
@@ -15,11 +15,11 @@ public final class WearGauge extends Gauge {
     };
 
     @Override
-    public double getRealValue(MinecraftClient mc) {
-        ItemStack item = mc.player.getEquippedStack(EquipmentSlot.CHEST);
-        if (!item.isOf(Items.ELYTRA)) return 0;
+    public double getRealValue(Minecraft mc) {
+        ItemStack item = mc.player.getItemBySlot(EquipmentSlot.CHEST);
+        if (!item.is(Items.ELYTRA)) return 0;
 
-        return ((double) (item.getMaxDamage() - item.getDamage()) / item.getMaxDamage());
+        return ((double) (item.getMaxDamage() - item.getDamageValue()) / item.getMaxDamage());
     }
 
     @Override

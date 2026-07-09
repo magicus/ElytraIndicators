@@ -1,11 +1,11 @@
 /*
- * Copyright © Magnus Ihse Bursie 2025.
+ * Copyright © Magnus Ihse Bursie 2025-2026.
  * This file is released under LGPLv3. See LICENSE for full license details.
  */
 package se.icus.mag.elytraindicators.gauges;
 
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.entity.Entity;
+import net.minecraft.client.Minecraft;
+import net.minecraft.world.entity.Entity;
 
 public final class SpeedGauge extends Gauge {
     private static final GaugeFacePart[] GAUGE_FACE_PARTS = {
@@ -17,11 +17,11 @@ public final class SpeedGauge extends Gauge {
     };
 
     @Override
-    public double getRealValue(MinecraftClient mc) {
+    public double getRealValue(Minecraft mc) {
         Entity player = mc.player;
-        double dx = player.getX() - player.lastRenderX;
-        double dy = player.getY() - player.lastRenderY;
-        double dz = player.getZ() - player.lastRenderZ;
+        double dx = player.getX() - player.xOld;
+        double dy = player.getY() - player.yOld;
+        double dz = player.getZ() - player.zOld;
         return Math.sqrt(dx * dx + dy * dy + dz * dz) * 20.0;
     }
 

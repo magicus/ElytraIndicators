@@ -1,11 +1,11 @@
 /*
- * Copyright © Magnus Ihse Bursie 2025.
+ * Copyright © Magnus Ihse Bursie 2025-2026.
  * This file is released under LGPLv3. See LICENSE for full license details.
  */
 package se.icus.mag.elytraindicators.gauges;
 
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.entity.Entity;
+import net.minecraft.client.Minecraft;
+import net.minecraft.world.entity.Entity;
 
 public final class ClimbGauge extends Gauge {
     private static final GaugeFacePart[] GAUGE_FACE_PARTS = {
@@ -17,9 +17,9 @@ public final class ClimbGauge extends Gauge {
     };
 
     @Override
-    public double getRealValue(MinecraftClient mc) {
+    public double getRealValue(Minecraft mc) {
         Entity player = mc.player;
-        return (player.lastRenderY - player.getY()) * 20.0;
+        return (player.yOld - player.getY()) * 20.0;
     }
 
     @Override

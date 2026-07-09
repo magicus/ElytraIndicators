@@ -1,10 +1,10 @@
 /*
- * Copyright © Magnus Ihse Bursie 2025.
+ * Copyright © Magnus Ihse Bursie 2025-2026.
  * This file is released under LGPLv3. See LICENSE for full license details.
  */
 package se.icus.mag.elytraindicators.gauges;
 
-import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.Minecraft;
 
 public abstract sealed class Gauge permits PitchGauge, SpeedGauge, ClimbGauge, HeightGauge, WearGauge {
     private static final Gauge[] GAUGES = {
@@ -23,7 +23,7 @@ public abstract sealed class Gauge permits PitchGauge, SpeedGauge, ClimbGauge, H
         return GAUGES[slot];
     }
 
-    public int getValue(MinecraftClient mc) {
+    public int getValue(Minecraft mc) {
         double realValue = getRealValue(mc);
 
         // Rescale it to 0-12
@@ -33,7 +33,7 @@ public abstract sealed class Gauge permits PitchGauge, SpeedGauge, ClimbGauge, H
 
     public abstract GaugeFacePart[] getFaceParts();
 
-    protected abstract double getRealValue(MinecraftClient mc);
+    protected abstract double getRealValue(Minecraft mc);
 
     protected abstract double rescale(double realValue);
 

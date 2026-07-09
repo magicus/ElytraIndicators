@@ -1,10 +1,10 @@
 /*
- * Copyright © Magnus Ihse Bursie 2025.
+ * Copyright © Magnus Ihse Bursie 2025-2026.
  * This file is released under LGPLv3. See LICENSE for full license details.
  */
 package se.icus.mag.elytraindicators.gauges;
 
-import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.Minecraft;
 
 public final class PitchGauge extends Gauge {
     private static final GaugeFacePart[] GAUGE_FACE_PARTS = {
@@ -16,8 +16,8 @@ public final class PitchGauge extends Gauge {
     };
 
     @Override
-    public double getRealValue(MinecraftClient mc) {
-        return mc.player.getPitch();
+    public double getRealValue(Minecraft mc) {
+        return mc.player.getXRot();
     }
 
     @Override

@@ -1,5 +1,5 @@
 /*
- * Copyright © Magnus Ihse Bursie 2025.
+ * Copyright © Magnus Ihse Bursie 2025-2026.
  * This file is released under LGPLv3. See LICENSE for full license details.
  */
 package se.icus.mag.elytraindicators;
@@ -10,8 +10,8 @@ import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElementRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.hud.VanillaHudElements;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.util.Identifier;
+import net.minecraft.client.Minecraft;
+import net.minecraft.resources.ResourceLocation;
 import se.icus.mag.elytraindicators.config.ElytraIndicatorsConfig;
 import se.icus.mag.elytraindicators.render.ElytraIndicatorsRenderer;
 
@@ -29,8 +29,8 @@ public class ElytraIndicatorsMod implements ClientModInitializer {
 
         HudElementRegistry.attachElementAfter(
                 VanillaHudElements.HOTBAR,
-                Identifier.of(MOD_ID, "elytra_hud"),
-                (drawContext, tickDelta) -> renderer.render(drawContext, MinecraftClient.getInstance()));
+                ResourceLocation.fromNamespaceAndPath(MOD_ID, "elytra_hud"),
+                (drawContext, tickDelta) -> renderer.render(drawContext, Minecraft.getInstance()));
     }
 
     public static ElytraIndicatorsConfig getConfig() {

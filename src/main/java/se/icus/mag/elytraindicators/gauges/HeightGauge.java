@@ -1,10 +1,10 @@
 /*
- * Copyright © Magnus Ihse Bursie 2025.
+ * Copyright © Magnus Ihse Bursie 2025-2026.
  * This file is released under LGPLv3. See LICENSE for full license details.
  */
 package se.icus.mag.elytraindicators.gauges;
 
-import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.Minecraft;
 
 public final class HeightGauge extends Gauge {
     private static final GaugeFacePart[] GAUGE_FACE_PARTS = {
@@ -12,7 +12,7 @@ public final class HeightGauge extends Gauge {
     };
 
     @Override
-    public double getRealValue(MinecraftClient mc) {
+    public double getRealValue(Minecraft mc) {
         return mc.player.getY();
     }
 

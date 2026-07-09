@@ -1,10 +1,10 @@
 /*
- * Copyright © Magnus Ihse Bursie 2025.
+ * Copyright © Magnus Ihse Bursie 2025-2026.
  * This file is released under LGPLv3. See LICENSE for full license details.
  */
 package se.icus.mag.elytraindicators.render;
 
-import net.minecraft.util.Identifier;
+import net.minecraft.resources.ResourceLocation;
 import se.icus.mag.elytraindicators.ElytraIndicatorsMod;
 
 public enum IndicatorSize {
@@ -14,20 +14,21 @@ public enum IndicatorSize {
 
     public static final int TEXTURE_HEIGHT = 22;
 
-    private final Identifier identifier;
+    private final ResourceLocation resourceLocation;
     private final int width;
     private final int gaugeOffset;
     private final int gaugeWidth;
 
     IndicatorSize(String textureName, int width, int gaugeOffset, int gaugeWidth) {
-        this.identifier = Identifier.of(ElytraIndicatorsMod.MOD_ID, "textures/gui/" + textureName + ".png");
+        this.resourceLocation = ResourceLocation.fromNamespaceAndPath(
+                ElytraIndicatorsMod.MOD_ID, "textures/gui/" + textureName + ".png");
         this.width = width;
         this.gaugeOffset = gaugeOffset;
         this.gaugeWidth = gaugeWidth;
     }
 
-    public Identifier getIdentifier() {
-        return identifier;
+    public ResourceLocation getResourceLocation() {
+        return resourceLocation;
     }
 
     public int getWidth() {
