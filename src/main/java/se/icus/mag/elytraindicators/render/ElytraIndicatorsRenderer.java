@@ -22,7 +22,7 @@ public class ElytraIndicatorsRenderer {
 
     public void render(GuiGraphicsExtractor graphics, Minecraft mc) {
         if (!(mc.getCameraEntity() instanceof Player playerEntity)) return;
-        if (mc.options.hideGui) return;
+        if (mc.gui.hud.isHidden()) return;
         if (!mc.player.isFallFlying()) return;
 
         boolean rightHandSide = playerEntity.getMainArm().getOpposite() == HumanoidArm.LEFT;
