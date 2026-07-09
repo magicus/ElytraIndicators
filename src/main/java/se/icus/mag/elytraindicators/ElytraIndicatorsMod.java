@@ -11,7 +11,7 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElementRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.hud.VanillaHudElements;
 import net.minecraft.client.Minecraft;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import se.icus.mag.elytraindicators.config.ElytraIndicatorsConfig;
 import se.icus.mag.elytraindicators.render.ElytraIndicatorsRenderer;
 
@@ -29,8 +29,8 @@ public class ElytraIndicatorsMod implements ClientModInitializer {
 
         HudElementRegistry.attachElementAfter(
                 VanillaHudElements.HOTBAR,
-                ResourceLocation.fromNamespaceAndPath(MOD_ID, "elytra_hud"),
-                (drawContext, tickDelta) -> renderer.render(drawContext, Minecraft.getInstance()));
+                Identifier.fromNamespaceAndPath(MOD_ID, "elytra_hud"),
+                (graphics, tickDelta) -> renderer.render(graphics, Minecraft.getInstance()));
     }
 
     public static ElytraIndicatorsConfig getConfig() {

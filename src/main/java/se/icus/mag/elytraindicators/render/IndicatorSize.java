@@ -4,7 +4,7 @@
  */
 package se.icus.mag.elytraindicators.render;
 
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import se.icus.mag.elytraindicators.ElytraIndicatorsMod;
 
 public enum IndicatorSize {
@@ -14,21 +14,21 @@ public enum IndicatorSize {
 
     public static final int TEXTURE_HEIGHT = 22;
 
-    private final ResourceLocation resourceLocation;
+    private final Identifier identifier;
     private final int width;
     private final int gaugeOffset;
     private final int gaugeWidth;
 
     IndicatorSize(String textureName, int width, int gaugeOffset, int gaugeWidth) {
-        this.resourceLocation = ResourceLocation.fromNamespaceAndPath(
-                ElytraIndicatorsMod.MOD_ID, "textures/gui/" + textureName + ".png");
+        this.identifier =
+                Identifier.fromNamespaceAndPath(ElytraIndicatorsMod.MOD_ID, "textures/gui/" + textureName + ".png");
         this.width = width;
         this.gaugeOffset = gaugeOffset;
         this.gaugeWidth = gaugeWidth;
     }
 
-    public ResourceLocation getResourceLocation() {
-        return resourceLocation;
+    public Identifier getIdentifier() {
+        return identifier;
     }
 
     public int getWidth() {
