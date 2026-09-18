@@ -10,29 +10,29 @@ env:
   MOD_NAME: Elytra Indicators
   MODRINTH_ID: 'lTX1GpiD'
   CURSEFORGE_ID: '1315463'
-  JAVA_VERSION: 21
+  JAVA_VERSION: 25
 
 jobs:
   build-and-release:
     runs-on: ubuntu-latest
     steps:
       - name: Check out source code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Validate Gradle wrapper
-        uses: gradle/actions/wrapper-validation@v3
+        uses: gradle/actions/wrapper-validation@v6
 
       - name: Setup JDK
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v6
         with:
           distribution: 'temurin'
           java-version: '${{env.JAVA_VERSION}}'
 
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v3
+        uses: gradle/actions/setup-gradle@v6
 
       - name: Build with Gradle
-        run: ./gradlew jar
+        run: ./gradlew build
 
       - name: Get version numbers from tag
         id: version
@@ -73,7 +73,7 @@ jobs:
 
       - name: Publish release
         id: publish
-        uses: Kir-Antipov/mc-publish@v3.3
+        uses: Kira-NT/mc-publish@v3.3
         with:
           modrinth-id: ${{ env.MODRINTH_ID }}
           curseforge-id: ${{ env.CURSEFORGE_ID }}

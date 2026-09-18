@@ -2,7 +2,6 @@
   "schemaVersion": 1,
   "id": "elytraindicators",
   "version": "${mod_version}",
-
   "name": "Elytra Indicators",
   "description": "Provides Vanilla-style \"fly by instrument\" support for elytra flight",
   "authors": [
@@ -13,12 +12,9 @@
     "issues": "https://github.com/magicus/elytraindicators/issues",
     "sources": "https://github.com/magicus/elytraindicators"
   },
-
-  "license": "LGPLv3",
+  "license": "LGPL-3.0-only",
   "icon": "assets/elytraindicators/icon.png",
-
   "environment": "client",
-
   "entrypoints": {
     "client": [
       "se.icus.mag.elytraindicators.ElytraIndicatorsMod"
@@ -27,10 +23,9 @@
       "se.icus.mag.elytraindicators.config.ElytraIndicatorsModMenuIntegration"
     ]
   },
-
   "depends": {
-    "fabricloader": ">=${loader_version}",
     "minecraft": "${supported_minecraft_versions}",
+    "fabricloader": ">=${loader_version}",
     "fabric-api": ">=${fabric_api_version}",
     "cloth-config":">=${cloth_version}"
   }
